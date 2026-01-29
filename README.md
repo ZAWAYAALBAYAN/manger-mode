@@ -194,7 +194,7 @@
         if(min >= 90) { 
             clearInterval(gInt); 
             document.getElementById('play-btn').disabled = false;
-            if(mS > oS) { user.pts += 3; user.budget += 40; logMsg("✅ فوز! +40M مكافأة."); }
+            if(mS > oS) { user.pts += 3; user.budget += 2; logMsg("✅ فوز! +2mمكافأة."); }
             else if(mS === oS) { user.pts += 1; user.budget += 10; logMsg("🤝 تعادل."); }
             else { logMsg("❌ خسارة."); }
             updateUI();
