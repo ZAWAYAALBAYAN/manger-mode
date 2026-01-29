@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مدرب الأساطير 2026 | النسخة الملكية</title>
+    <title>مدرب الأساطير 2026 | سوق الانتقالات</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --neon: #00ff88; --danger: #ff4757; --gold: #f1c40f; --card-bg: #1a233b; }
@@ -19,36 +19,32 @@
         .keeper { width: 50px; height: 80px; background: #ff4757; position: absolute; bottom: 0; left: 175px; border-radius: 10px 10px 0 0; transition: 0.4s; }
         .ball { width: 35px; height: 35px; background: #fff; border-radius: 50%; position: absolute; bottom: -60px; left: 182px; transition: 0.5s; box-shadow: 0 0 15px white; }
 
-        /* الأيقونات بديل اللوجو */
-        .team-icon { 
-            width: 70px; height: 70px; border-radius: 50%; display: flex; 
-            align-items: center; justify-content: center; font-size: 2.5rem; 
-            margin: 0 auto 10px; border: 3px solid rgba(255,255,255,0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
+        .team-icon { width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 10px; border: 3px solid rgba(255,255,255,0.2); }
 
-        /* التصميم العام */
         header { background: linear-gradient(135deg, #1e3799, #000); padding: 30px; border-radius: 25px; text-align: center; border-bottom: 5px solid var(--neon); margin-bottom: 25px; }
         .grid-layout { display: grid; grid-template-columns: 1fr 380px; gap: 20px; }
-        .card { background: var(--card-bg); padding: 25px; border-radius: 25px; border: 1px solid #2d3436; }
+        .card { background: var(--card-bg); padding: 25px; border-radius: 25px; border: 1px solid #2d3436; margin-bottom: 20px; }
         
         .scoreboard { display: flex; justify-content: space-around; align-items: center; background: #000; padding: 20px; border-radius: 20px; margin-bottom: 20px; }
         .score { font-size: 4rem; font-weight: 900; color: var(--neon); text-shadow: 0 0 20px var(--neon); }
 
-        .match-log { height: 280px; overflow-y: auto; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 15px; font-size: 0.95rem; line-height: 1.8; border-right: 4px solid var(--gold); }
-        .var-alert { color: var(--gold); font-weight: bold; border: 2px solid var(--gold); padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 10px; }
+        .match-log { height: 200px; overflow-y: auto; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 15px; font-size: 0.95rem; line-height: 1.8; border-right: 4px solid var(--gold); }
+
+        /* سوق الانتقالات */
+        .transfer-market { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 15px; }
+        .player-card { background: #0f172a; border: 1px solid #1e293b; padding: 15px; border-radius: 15px; text-align: center; transition: 0.3s; }
+        .player-card:hover { border-color: var(--gold); background: #1e293b; }
+        .player-card b { display: block; font-size: 0.9rem; color: var(--gold); }
+        .buy-btn { background: var(--gold); border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 8px; font-family: 'Cairo'; width: 100%; }
 
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 12px; border-bottom: 1px solid #2d3436; text-align: center; }
         .my-team-row { background: rgba(0, 255, 136, 0.15); color: var(--neon); }
 
         .btn-main { background: var(--neon); color: #000; padding: 18px; border: none; border-radius: 15px; width: 100%; font-weight: 900; font-size: 1.2rem; cursor: pointer; transition: 0.2s; font-family: 'Cairo'; }
-        .btn-main:active { transform: scale(0.95); }
 
         .team-select-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
-        .selector-card { background: var(--card-bg); padding: 20px; border-radius: 20px; text-align: center; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
-        .selector-card:hover { border-color: var(--neon); transform: translateY(-5px); background: #252e4d; }
-
+        .selector-card { background: var(--card-bg); padding: 20px; border-radius: 20px; text-align: center; cursor: pointer; border: 2px solid transparent; }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -65,32 +61,43 @@
 </div>
 
 <div class="container">
-    <header><h1>🏆 GLOBAL SUPER LEAGUE 2026</h1><p>إدارة الكيانات الكبرى | نظام الهوية البصرية المتطور</p></header>
+    <header><h1>🏆 SUPER LEAGUE & TRANSFERS</h1><p>إدارة الكيان وسوق الانتقالات 2026</p></header>
 
     <div id="setup-area" class="card">
-        <h2 style="text-align: center; margin-bottom: 25px;">اختر كيانك المفضل:</h2>
+        <h2 style="text-align: center;">اختر فريقك المفضل:</h2>
         <div id="team-list" class="team-select-grid"></div>
     </div>
 
     <div id="game-area" class="grid-layout hidden">
-        <div class="card">
-            <div class="scoreboard">
-                <div style="text-align:center"><div id="h-icon" class="team-icon"></div><h3 id="h-name">فريقك</h3></div>
-                <div class="score" id="h-score">0</div>
-                <div style="font-size:1.5rem; color:#444">VS</div>
-                <div class="score" id="a-score">0</div>
-                <div style="text-align:center"><div id="a-icon" class="team-icon"></div><h3 id="a-name">الخصم</h3></div>
+        <div>
+            <div class="card">
+                <div class="scoreboard">
+                    <div style="text-align:center"><div id="h-icon" class="team-icon"></div><h3 id="h-name">فريقك</h3></div>
+                    <div class="score" id="h-score">0</div>
+                    <div style="font-size:1.5rem; color:#444">VS</div>
+                    <div class="score" id="a-score">0</div>
+                    <div style="text-align:center"><div id="a-icon" class="team-icon"></div><h3 id="a-name">الخصم</h3></div>
+                </div>
+                <div id="timer" style="text-align:center; color:var(--gold); font-weight:bold; font-size:1.5rem; margin-bottom:15px;">00:00</div>
+                <div class="match-log" id="log">صافرة البداية قريبة...</div>
+                <button id="play-btn" class="btn-main" onclick="startMatch()">لعب المباراة القادمة 🏟️</button>
             </div>
-            <div id="timer" style="text-align:center; color:var(--gold); font-weight:bold; font-size:1.5rem; margin-bottom:15px;">00:00</div>
-            <div id="var-box"></div>
-            <div class="match-log" id="log">بانتظار صافرة البداية...</div>
-            <button id="play-btn" class="btn-main" onclick="startMatch()">إرسال الفريق للملعب 🏟️</button>
+
+            <div class="card">
+                <h3>🛒 سوق الانتقالات (صفقات سوبر)</h3>
+                <div class="transfer-market" id="market">
+                    <div class="player-card"><b>🎯 صانع ألعاب</b><span>+5 قوة</span><button class="buy-btn" onclick="buyPlayer(50, 5)">50M</button></div>
+                    <div class="player-card"><b>🧤 حارس عملاق</b><span>+4 قوة</span><button class="buy-btn" onclick="buyPlayer(40, 4)">40M</button></div>
+                    <div class="player-card"><b>🔥 هداف مرعب</b><span>+8 قوة</span><button class="buy-btn" onclick="buyPlayer(80, 8)">80M</button></div>
+                    <div class="player-card"><b>🛡️ مدافع صلب</b><span>+6 قوة</span><button class="buy-btn" onclick="buyPlayer(60, 6)">60M</button></div>
+                </div>
+            </div>
         </div>
 
         <div class="card">
             <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
-                <span>💰 الميزانية: <b id="money" style="color:var(--gold)">0</b></span>
-                <span>⚡ القوة: <b id="pwr" style="color:var(--neon)">0</b></span>
+                <span>💰 ميزانية: <b id="money">0</b>M</span>
+                <span>⚡ قوة: <b id="pwr">0</b></span>
             </div>
             <h3>📊 جدول الترتيب</h3>
             <table><thead><tr><th>#</th><th>الفريق</th><th>ن</th></tr></thead><tbody id="table-body"></tbody></table>
@@ -100,26 +107,26 @@
 
 <script>
     const teams = [
-        { name: "الأهلي", icon: "🦅", color: "#e74c3c", pwr: 89, pts: 0, pld: 0, budget: 100 },
-        { name: "الزمالك", icon: "🏹", color: "#ffffff", pwr: 86, pts: 0, pld: 0, budget: 85 },
-        { name: "الهلال", icon: "🌙", color: "#3498db", pwr: 93, pts: 0, pld: 0, budget: 220 },
-        { name: "النصر", icon: "☀️", color: "#f1c40f", pwr: 92, pts: 0, pld: 0, budget: 200 },
-        { name: "ريال مدريد", icon: "👑", color: "#f39c12", pwr: 96, pts: 0, pld: 0, budget: 550 },
-        { name: "مان سيتي", icon: "🦈", color: "#81ecec", pwr: 97, pts: 0, pld: 0, budget: 600 },
-        { name: "ليفربول", icon: "🔴", color: "#c0392b", pwr: 93, pts: 0, pld: 0, budget: 380 },
-        { name: "برشلونة", icon: "🔵", color: "#8e44ad", pwr: 91, pts: 0, pld: 0, budget: 320 },
-        { name: "بايرن", icon: "🛡️", color: "#d63031", pwr: 94, pts: 0, pld: 0, budget: 450 },
-        { name: "الاتحاد", icon: "🐯", color: "#ff9f43", pwr: 88, pts: 0, pld: 0, budget: 160 },
-        { name: "أرسنال", icon: "🔫", color: "#ff4d4d", pwr: 91, pts: 0, pld: 0, budget: 340 },
-        { name: "باريس", icon: "🗼", color: "#2d3436", pwr: 92, pts: 0, pld: 0, budget: 480 },
-        { name: "الوداد", icon: "🦢", color: "#ff7675", pwr: 85, pts: 0, pld: 0, budget: 90 },
-        { name: "الرجاء", icon: "🦅", color: "#55efc4", pwr: 84, pts: 0, pld: 0, budget: 85 },
-        { name: "العين", icon: "🟣", color: "#a29bfe", pwr: 87, pts: 0, pld: 0, budget: 130 },
-        { name: "إنتر ميلان", icon: "🐍", color: "#0984e3", pwr: 91, pts: 0, pld: 0, budget: 300 },
-        { name: "تشيلسي", icon: "🦁", color: "#00a8ff", pwr: 88, pts: 0, pld: 0, budget: 280 },
-        { name: "مان يونايتد", icon: "😈", color: "#d63031", pwr: 89, pts: 0, pld: 0, budget: 350 },
-        { name: "المصري", icon: "🚢", color: "#00b894", pwr: 80, pts: 0, pld: 0, budget: 45 },
-        { name: "الإسماعيلي", icon: "⚽", color: "#ffeaa7", pwr: 79, pts: 0, pld: 0, budget: 40 }
+        { name: "الأهلي", icon: "🦅", color: "#e74c3c", pwr: 89, pts: 0, budget: 100 },
+        { name: "الزمالك", icon: "🏹", color: "#ffffff", pwr: 86, pts: 0, budget: 85 },
+        { name: "الهلال", icon: "🌙", color: "#3498db", pwr: 93, pts: 0, budget: 220 },
+        { name: "النصر", icon: "☀️", color: "#f1c40f", pwr: 92, pts: 0, budget: 200 },
+        { name: "ريال مدريد", icon: "👑", color: "#f39c12", pwr: 96, pts: 0, budget: 550 },
+        { name: "مان سيتي", icon: "🦈", color: "#81ecec", pwr: 97, pts: 0, budget: 600 },
+        { name: "ليفربول", icon: "🔴", color: "#c0392b", pwr: 93, pts: 0, budget: 380 },
+        { name: "برشلونة", icon: "🔵", color: "#8e44ad", pwr: 91, pts: 0, budget: 320 },
+        { name: "بايرن", icon: "🛡️", color: "#d63031", pwr: 94, pts: 0, budget: 450 },
+        { name: "الاتحاد", icon: "🐯", color: "#ff9f43", pwr: 88, pts: 0, budget: 160 },
+        { name: "أرسنال", icon: "🔫", color: "#ff4d4d", pwr: 91, pts: 0, budget: 340 },
+        { name: "باريس", icon: "🗼", color: "#2d3436", pwr: 92, pts: 0, budget: 480 },
+        { name: "الوداد", icon: "🦢", color: "#ff7675", pwr: 85, pts: 0, budget: 90 },
+        { name: "الرجاء", icon: "🦅", color: "#55efc4", pwr: 84, pts: 0, budget: 85 },
+        { name: "العين", icon: "🟣", color: "#a29bfe", pwr: 87, pts: 0, budget: 130 },
+        { name: "إنتر ميلان", icon: "🐍", color: "#0984e3", pwr: 91, pts: 0, budget: 300 },
+        { name: "تشيلسي", icon: "🦁", color: "#00a8ff", pwr: 88, pts: 0, budget: 280 },
+        { name: "مان يونايتد", icon: "😈", color: "#d63031", pwr: 89, pts: 0, budget: 350 },
+        { name: "المصري", icon: "🚢", color: "#00b894", pwr: 80, pts: 0, budget: 45 },
+        { name: "الإسماعيلي", icon: "⚽", color: "#ffeaa7", pwr: 79, pts: 0, budget: 40 }
     ];
 
     let user = null, opp = null, gInt, pMode = 'shoot', mS = 0, oS = 0, min = 0;
@@ -146,13 +153,24 @@
     }
 
     function updateUI() {
-        document.getElementById('money').innerText = user.budget + "M";
+        document.getElementById('money').innerText = user.budget;
         document.getElementById('pwr').innerText = user.pwr;
         const sorted = [...teams].sort((a,b) => b.pts - a.pts);
         document.getElementById('table-body').innerHTML = sorted.map((t,i) => `
             <tr class="${t.name === user.name ? 'my-team-row' : ''}">
                 <td>${i+1}</td><td>${t.name}</td><td>${t.pts}</td>
             </tr>`).join('');
+    }
+
+    function buyPlayer(cost, powerUp) {
+        if(user.budget >= cost) {
+            user.budget -= cost;
+            user.pwr += powerUp;
+            alert("✅ تمت الصفقة بنجاح! قوة الفريق زادت.");
+            updateUI();
+        } else {
+            alert("❌ الميزانية لا تسمح بهذه الصفقة السوبر!");
+        }
     }
 
     function startMatch() {
@@ -163,34 +181,30 @@
         mS = 0; oS = 0; min = 0;
         document.getElementById('h-score').innerText = 0;
         document.getElementById('a-score').innerText = 0;
-        document.getElementById('log').innerHTML = "🏟️ اللاعبون في الممر.. استعدوا!";
-        gInt = setInterval(engine, 800);
+        document.getElementById('log').innerHTML = "🏟️ انطلاق المباراة!";
+        gInt = setInterval(engine, 700);
     }
 
     function engine() {
         min += 5;
         document.getElementById('timer').innerText = min + ":00";
-        if(Math.random() < 0.08) { mS++; document.getElementById('h-score').innerText = mS; logMsg("⚽ جووووول! الكيان يضرب بقوة!"); }
-        if(Math.random() < 0.07) { oS++; document.getElementById('a-score').innerText = oS; logMsg(`💔 هدف للخصم.. تراجع دفاعي غير مبرر.`); }
+        if(Math.random() < 0.08) { mS++; document.getElementById('h-score').innerText = mS; logMsg("⚽ هدف لصالحنا!"); }
+        if(Math.random() < 0.07) { oS++; document.getElementById('a-score').innerText = oS; logMsg(`💔 هدف في مرمانا.`); }
         if(Math.random() < 0.03) { clearInterval(gInt); handleVAR(); }
         if(min >= 90) { 
             clearInterval(gInt); 
             document.getElementById('play-btn').disabled = false;
-            if(mS > oS) { user.pts += 3; user.budget += 30; logMsg("✅ فوز وثلاث نقاط غالية!"); }
-            else if(mS === oS) { user.pts += 1; logMsg("🤝 تعادل سيد الموقف."); }
-            else { logMsg("❌ خسارة.. يجب العودة للتدريبات."); }
+            if(mS > oS) { user.pts += 3; user.budget += 2; logMsg("✅ فوز! +2m مكافأة."); }
+            else if(mS === oS) { user.pts += 1; user.budget += 10; logMsg("🤝 تعادل."); }
+            else { logMsg("❌ خسارة."); }
             updateUI();
         }
     }
 
     function handleVAR() {
-        document.getElementById('var-box').innerHTML = `<div class="var-alert">📺 VAR: الحكم يراجع اللقطة...</div>`;
-        setTimeout(() => {
-            document.getElementById('var-box').innerHTML = "";
-            pMode = Math.random() > 0.5 ? 'shoot' : 'save';
-            document.getElementById('penalty-screen').style.display = 'flex';
-            document.getElementById('p-title').innerText = pMode === 'shoot' ? "ضربة جزاء لك!" : "ضربة جزاء ضدك!";
-        }, 2000);
+        pMode = Math.random() > 0.5 ? 'shoot' : 'save';
+        document.getElementById('penalty-screen').style.display = 'flex';
+        document.getElementById('p-title').innerText = pMode === 'shoot' ? "ضربة جزاء لك!" : "ضربة جزاء ضدك!";
     }
 
     function shoot(dir) {
@@ -200,11 +214,13 @@
         if(dir === 'left') ball.style.left = "40px"; else if(dir === 'right') ball.style.left = "330px";
         ball.style.bottom = "120px";
         setTimeout(() => {
-            if(pMode === 'shoot' && dir !== kDir) { mS++; document.getElementById('h-score').innerText = mS; }
-            else if(pMode === 'save' && dir !== kDir) { oS++; document.getElementById('a-score').innerText = oS; }
+            if(pMode === 'shoot' && dir !== kDir) mS++; 
+            else if(pMode === 'save' && dir !== kDir) oS++;
+            document.getElementById('h-score').innerText = mS;
+            document.getElementById('a-score').innerText = oS;
             document.getElementById('penalty-screen').style.display = 'none';
             ball.style.bottom = "-60px"; ball.style.left = "182px"; keeper.style.left = "175px";
-            gInt = setInterval(engine, 800);
+            gInt = setInterval(engine, 700);
         }, 600);
     }
 
